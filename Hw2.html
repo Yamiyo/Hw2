@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@
 						    and Close the door
 </div>
 <div id="angleInfo"> </div>
-<audio id="sound" autoplay loop style="display:none">
+<audio id="sound" style="display:none">
 <source src="music/door.wav" type='audio/mp3'>
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
@@ -67,7 +67,7 @@ function init()
 {
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	sound.pause();
+	
 	debugger;
 	var container = document.getElementById ( 'container' );
 	
@@ -81,7 +81,7 @@ function init()
 	
 	var doorframeTexture = THREE.ImageUtils.loadTexture("images/doorframe.jpg");
 	var doorknobTexture = THREE.ImageUtils.loadTexture("images/doorknob.jpg");
-	var doorTexture = THREE.ImageUtils.loadTexture("images/door.jpg");
+
 	var floorTexture = THREE.ImageUtils.loadTexture("images/floor.jpeg");
 
 	var doorframeGeometry = new THREE.BoxGeometry (47,3,3);		//底
@@ -122,8 +122,13 @@ function init()
 	doorshaft2.position.set(73.5, 25, 1.5);
 
 	
-	var doorGeometry = new THREE.BoxGeometry (47,94,3);		//門
-	var doorMaterial = new THREE.MeshLambertMaterial ({map : doorTexture});
+	var doorGeometry = new THREE.BoxGeometry (46.7,93.7,3);		//門
+	var doorMaterial = new THREE.MeshPhongMaterial ();
+	
+		doorMaterial.map = THREE.ImageUtils.loadTexture("images/door.jpg");
+		doorMaterial.bumpMap = THREE.ImageUtils.loadTexture("images/door_NRM.png");
+		doorMaterial.bumpScale = 0.5;
+	
 	door = new THREE.Mesh (doorGeometry, doorMaterial);
 
 	door.position.set (-23.5, -25, -1.5);
@@ -131,21 +136,32 @@ function init()
 	scene.add (doorshaft);
 	scene.add (doorshaft2);
 
-	var axisGeometry = new THREE.CylinderGeometry (1,1,5,20,20);	//門把棍
+	var knobGeometry = new THREE.BoxGeometry (3,2,0.5);		//門鎖
+	var knobMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
+	knob = new THREE.Mesh (knobGeometry, knobMaterial);
+	knob.position.set (-23, 0, 0);
+	door.add (knob);
+	
+	var axisGeometry = new THREE.CylinderGeometry (1,1,5.5,20,20);	//門把棍
 	var axisMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
 	axis = new THREE.Mesh (axisGeometry, axisMaterial);
 	axis.rotation.order = 'XYZ';
 	axis.rotation.x = (Math.PI/2);
-	axis.position.set (-22.5, 0, 2);
+	axis.position.set (-22, 0, 0);
 	door.add (axis);
 	
 	var doorknobGeometry = new THREE.BoxGeometry (10,2,0.5);		//門把
 	var doorknobMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
 	doorknob = new THREE.Mesh (doorknobGeometry, doorknobMaterial);
+	doorknob2 = new THREE.Mesh (doorknobGeometry, doorknobMaterial);
 	doorknob.rotation.order = 'XYZ';
 	doorknob.rotation.x = -(Math.PI/2);
 	doorknob.position.set (4, 2.5, 0);
+	doorknob2.rotation.order = 'XYZ';
+	doorknob2.rotation.x = -(Math.PI/2);
+	doorknob2.position.set (4, -2.5, 0);
 	axis.add (doorknob);
+	axis.add (doorknob2);
 	
 	camera = new THREE.PerspectiveCamera (45, width/height, 0.1, 10000000);
 	camera.position.y = 160;
@@ -195,41 +211,43 @@ function animate()
 	
 	if(doorturn==1)
 	{
-		if(turn==0&&(angle<Math.PI/6))
+		if(turn==0&&angle2>0)
+		turn=1;
+		else if(turn==0&&(angle<=Math.PI/6))
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
-			if(angle>=Math.PI/6)
+			knob.position.set (-23+angle*3, 0, 0);
+			if((angle>=Math.PI/6)&&angle2<=0)
 			{
 				turn=1;
 				sound.play();
 			}
 		}
 		
-		if(turn==1&&(angle>0))
+		if(turn==1&&(angle>0&&angle2<=Math.PI/6))
 		{	
 			angle -= 0.01;
 			angle2 += 0.01;
 			axis.rotation.y = -angle;
+			knob.position.set (-23+angle*3, 0, 0);
 			doorshaft.rotation.y = angle2*3;
 			if(angle<=0)
-			{
 				turn=2;
-				sound.pause();
-			}
 		}
 
 	}
 	
 	if(doorturn==0)
 	{
-		if(turn==0&&(angle<Math.PI/6))
+		if(turn==0&&(angle2>=0))
 		{	
 			angle += 0.01;
 			angle2 -= 0.01;
 			axis.rotation.y = -angle;
+			knob.position.set (-23+angle*3, 0, 0);
 			doorshaft.rotation.y = angle2*3;
-			if(angle>=Math.PI/6)
+			if(angle2<=0)
 			{
 				turn=1;
 				sound.play();
@@ -240,11 +258,9 @@ function animate()
 		{	
 			angle -= 0.01;
 			axis.rotation.y = -angle;
+			knob.position.set (-23+angle*3, 0, 0);
 			if(angle<=0)
-			{
 				turn=2;
-				sound.pause();
-			}
 		}
 		
 	}
