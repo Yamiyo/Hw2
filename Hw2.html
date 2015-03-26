@@ -145,6 +145,7 @@ function init()
 	doorknob.rotation.order = 'XYZ';
 	doorknob.rotation.x = -(Math.PI/2);
 	doorknob.position.set (4, 2.5, 0);
+	doorknob.position.set (4, -2.5, 0);
 	axis.add (doorknob);
 	
 	camera = new THREE.PerspectiveCamera (45, width/height, 0.1, 10000000);
