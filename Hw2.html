@@ -131,7 +131,7 @@ function init()
 	scene.add (doorshaft);
 	scene.add (doorshaft2);
 
-	var axisGeometry = new THREE.CylinderGeometry (1,1,12,20,20);	//門把棍
+	var axisGeometry = new THREE.CylinderGeometry (1,1,6,20,20);	//門把棍
 	var axisMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
 	axis = new THREE.Mesh (axisGeometry, axisMaterial);
 	axis.rotation.order = 'XYZ';
