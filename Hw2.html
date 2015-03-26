@@ -212,6 +212,7 @@ function animate()
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
+			knob.position.x = -angle;
 			if((angle>=Math.PI/6)&&angle2<=0)
 			{
 				turn=1;
@@ -224,6 +225,7 @@ function animate()
 			angle -= 0.01;
 			angle2 += 0.01;
 			axis.rotation.y = -angle;
+			knob.position.x = -angle;
 			doorshaft.rotation.y = angle2*3;
 			if(angle<=0)
 				turn=2;
