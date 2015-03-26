@@ -1,4 +1,4 @@
-﻿﻿
+﻿
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,22 +123,12 @@ function init()
 
 	
 	var doorGeometry = new THREE.BoxGeometry (46.7,93.7,3);		//門
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 869c0a157ff9a3bfeea1576a205749f18b2c414e
 	var doorMaterial = new THREE.MeshPhongMaterial ();
 	
 		doorMaterial.map = THREE.ImageUtils.loadTexture("images/door.jpg");
 		doorMaterial.bumpMap = THREE.ImageUtils.loadTexture("images/door_NRM.png");
 		doorMaterial.bumpScale = 0.5;
 	
-<<<<<<< HEAD
-=======
-	var doorMaterial = new THREE.MeshLambertMaterial ({map : doorTexture});
->>>>>>> 577c7c1e182a4e5539f6b34f583629258e9e93e3
-=======
->>>>>>> 869c0a157ff9a3bfeea1576a205749f18b2c414e
 	door = new THREE.Mesh (doorGeometry, doorMaterial);
 
 	door.position.set (-23.5, -25, -1.5);
