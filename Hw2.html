@@ -212,7 +212,7 @@ function animate()
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
-			knob.position.set (-23-angle*2, 0, 0);
+			knob.position.set (-23-angle*10, 0, 0);
 			if((angle>=Math.PI/6)&&angle2<=0)
 			{
 				turn=1;
@@ -225,7 +225,7 @@ function animate()
 			angle -= 0.01;
 			angle2 += 0.01;
 			axis.rotation.y = -angle;
-			knob.position.set (-23-angle*2, 0, 0);
+			knob.position.set (-23-angle*10, 0, 0);
 			doorshaft.rotation.y = angle2*3;
 			if(angle<=0)
 				turn=2;
@@ -240,7 +240,7 @@ function animate()
 			angle += 0.01;
 			angle2 -= 0.01;
 			axis.rotation.y = -angle;
-			knob.position.set (-23-angle*2, 0, 0);
+			knob.position.set (-23-angle*10, 0, 0);
 			doorshaft.rotation.y = angle2*3;
 			if(angle2<=0)
 			{
@@ -253,7 +253,7 @@ function animate()
 		{	
 			angle -= 0.01;
 			axis.rotation.y = -angle;
-			knob.position.set (-23-angle*2, 0, 0);
+			knob.position.set (-23-angle*10, 0, 0);
 			if(angle<=0)
 				turn=2;
 		}
