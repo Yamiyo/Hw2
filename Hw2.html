@@ -133,7 +133,7 @@ function init()
 
 	var knobGeometry = new THREE.BoxGeometry (6,2,0.5);		//門鎖
 	var knobMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
-	knob = new THREE.Mesh (doorknobGeometry, doorknobMaterial);
+	knob = new THREE.Mesh (knobGeometry, knobMaterial);
 	knob.position.set (-23, 0, 0);
 	door.add (knob);
 	
