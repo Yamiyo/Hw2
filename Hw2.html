@@ -38,7 +38,7 @@
 						    and Close the door
 </div>
 <div id="angleInfo"> </div>
-<audio id="sound"  style="display:none">
+<audio id="sound" autoplay loop style="display:none">
 <source src="music/door.wav" type='audio/mp3'>
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
@@ -67,7 +67,7 @@ function init()
 {
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	sound.pause();
+	
 	debugger;
 	var container = document.getElementById ( 'container' );
 	
@@ -199,22 +199,24 @@ function animate()
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
-			if(angle==Math.PI/6)
+			if(angle>=Math.PI/6)
 			{
 				turn=1;
 				sound.play();
 			}
 		}
 		
-		if(turn==1&&(angle>0&&angle<Math.PI/6))
+		if(turn==1&&(angle>0))
 		{	
 			angle -= 0.01;
 			angle2 += 0.01;
 			axis.rotation.y = -angle;
 			doorshaft.rotation.y = angle2*3;
 			if(angle<=0)
+			{
 				turn=2;
-
+				sound.pause();
+			}
 		}
 
 	}
@@ -227,20 +229,22 @@ function animate()
 			angle2 -= 0.01;
 			axis.rotation.y = -angle;
 			doorshaft.rotation.y = angle2*3;
-			if(angle==Math.PI/6)
+			if(angle>=Math.PI/6)
 			{
 				turn=1;
 				sound.play();
 			}
 		}
 		
-		if(turn==1&&(angle>0&&angle<Math.PI/6))
+		if(turn==1&&(angle>0))
 		{	
 			angle -= 0.01;
 			axis.rotation.y = -angle;
 			if(angle<=0)
+			{
 				turn=2;
-
+				sound.pause();
+			}
 		}
 		
 	}
