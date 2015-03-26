@@ -220,20 +220,20 @@ function animate()
 	
 	if(doorturn==0)
 	{
-		if(turn==0&&(angle2>=0&&angle<=Math.PI/6))
+		if(turn==0&&(angle2>=0))
 		{	
 			angle += 0.01;
 			angle2 -= 0.01;
 			axis.rotation.y = -angle;
 			doorshaft.rotation.y = angle2*3;
-			if(angle>=Math.PI/6)
+			if(angle2<=0)
 			{
 				turn=1;
 				sound.play();
 			}
 		}
 		
-		if(turn==1&&(angle>0&&angle2>0))
+		if(turn==1&&(angle>0))
 		{	
 			angle -= 0.01;
 			axis.rotation.y = -angle;
