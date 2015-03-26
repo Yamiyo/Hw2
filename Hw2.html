@@ -123,12 +123,16 @@ function init()
 
 	
 	var doorGeometry = new THREE.BoxGeometry (46.7,93.7,3);		//門
+<<<<<<< HEAD
 	var doorMaterial = new THREE.MeshPhongMaterial ();
 	
 		doorMaterial.map = THREE.ImageUtils.loadTexture("images/door.jpg");
 		doorMaterial.bumpMap = THREE.ImageUtils.loadTexture("images/door_NRM.png");
 		doorMaterial.bumpScale = 0.5;
 	
+=======
+	var doorMaterial = new THREE.MeshLambertMaterial ({map : doorTexture});
+>>>>>>> 577c7c1e182a4e5539f6b34f583629258e9e93e3
 	door = new THREE.Mesh (doorGeometry, doorMaterial);
 
 	door.position.set (-23.5, -25, -1.5);
