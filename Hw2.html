@@ -197,7 +197,7 @@ function animate()
 	{
 		if(anfle2>0)
 		turn=1;
-		if(turn==0&&(angle<=Math.PI/6))
+		else if(turn==0&&(angle<=Math.PI/6))
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
