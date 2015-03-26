@@ -142,11 +142,15 @@ function init()
 	var doorknobGeometry = new THREE.BoxGeometry (10,2,0.5);		//門把
 	var doorknobMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
 	doorknob = new THREE.Mesh (doorknobGeometry, doorknobMaterial);
+	doorknob2 = new THREE.Mesh (doorknobGeometry, doorknobMaterial);
 	doorknob.rotation.order = 'XYZ';
 	doorknob.rotation.x = -(Math.PI/2);
 	doorknob.position.set (4, 2.5, 0);
-	doorknob.position.set (4, -2.5, 0);
+	doorknob2.rotation.order = 'XYZ';
+	doorknob2.rotation.x = -(Math.PI/2);
+	doorknob2.position.set (4, -2.5, 0);
 	axis.add (doorknob);
+	axis.add (doorknob2);
 	
 	camera = new THREE.PerspectiveCamera (45, width/height, 0.1, 10000000);
 	camera.position.y = 160;
