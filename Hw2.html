@@ -131,7 +131,7 @@ function init()
 	scene.add (doorshaft);
 	scene.add (doorshaft2);
 
-	var knobGeometry = new THREE.BoxGeometry (6,2,0.5);		//門鎖
+	var knobGeometry = new THREE.BoxGeometry (3,2,0.5);		//門鎖
 	var knobMaterial = new THREE.MeshLambertMaterial ({map : doorknobTexture});
 	knob = new THREE.Mesh (knobGeometry, knobMaterial);
 	knob.position.set (-23, 0, 0);
