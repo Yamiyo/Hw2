@@ -199,7 +199,7 @@ function animate()
 		{	
 			angle += 0.01;
 			axis.rotation.y = -angle;
-			if(angle>=Math.PI/6&&angle2<=0)
+			if((angle>=Math.PI/6)&&angle2<=0)
 			{
 				turn=1;
 				sound.play();
@@ -257,6 +257,7 @@ function update()
 	if ( keyboard.down("Z"))  
 	{	
 		doorturn = (doorturn+1)%2;
+		if(angle2<=0)
 		turn=0;
 		
 	}
