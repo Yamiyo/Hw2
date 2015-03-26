@@ -81,7 +81,7 @@ function init()
 	
 	var doorframeTexture = THREE.ImageUtils.loadTexture("images/doorframe.jpg");
 	var doorknobTexture = THREE.ImageUtils.loadTexture("images/doorknob.jpg");
-	var doorTexture = THREE.ImageUtils.loadTexture("images/door.jpg");
+
 	var floorTexture = THREE.ImageUtils.loadTexture("images/floor.jpeg");
 
 	var doorframeGeometry = new THREE.BoxGeometry (47,3,3);		//底
@@ -123,7 +123,12 @@ function init()
 
 	
 	var doorGeometry = new THREE.BoxGeometry (46.7,93.7,3);		//門
-	var doorMaterial = new THREE.MeshLambertMaterial ({map : doorTexture});
+	var doorMaterial = new THREE.MeshPhongMaterial ();
+	
+		doorMaterial.map = THREE.ImageUtils.loadTexture("images/door.jpg");
+		doorMaterial.bumpMap = THREE.ImageUtils.loadTexture("images/door_NRM.png");
+		doorMaterial.bumpScale = 0.5;
+	
 	door = new THREE.Mesh (doorGeometry, doorMaterial);
 
 	door.position.set (-23.5, -25, -1.5);
